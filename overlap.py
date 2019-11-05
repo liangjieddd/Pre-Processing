@@ -11,17 +11,17 @@ except ImportError:
     import xml.etree.ElementTree as ET
 
 ImSize = [200, 200]
-PreImNum = 2776
-fileIdLen = 10
+PreImNum = 1800
+fileIdLen = 6
 ImExpName = '.jpg'
 AnotExpName = '.xml'
 ImIdSet = range(1, PreImNum + 1)
 
 # data file
-MainFolder = r'C:\Users\Administrator\Desktop\al_defect_VOC\VOCdevkit\VOC2007'
-ImFolder = r"C:\Users\Administrator\Desktop\al_defect_VOC\VOCdevkit\VOC2007\JPEGImages"
-AnotFolder = r"C:\Users\Administrator\Desktop\al_defect_VOC\VOCdevkit\VOC2007\Annotations"
-savePath = r"C:\Users\Administrator\Desktop\al_defect_GT"
+MainFolder = r'D:\deeplearning_workspace\write_rect_on_image\NEU-DET'
+ImFolder = "/home/dlj/CornerNet/val_orig_result"
+AnotFolder = "/home/dlj/CornerNet/data/coco/images/minival2014/Annotations"
+savePath = "/home/dlj/CornerNet/visual_img/"
 
 
 ##get object annotation bndbox loc start
@@ -34,10 +34,10 @@ def GetAnnotBoxLoc(AnotPath):
     for Object in ObjectSet:
         ObjName = Object.find('name').text
         BndBox = Object.find('bndbox')
-        x1 = int(BndBox.find('xmin').text)
-        y1 = int(BndBox.find('ymin').text)
-        x2 = int(BndBox.find('xmax').text)
-        y2 = int(BndBox.find('ymax').text)
+        x1 = int(BndBox.find('xmin').text) - 1
+        y1 = int(BndBox.find('ymin').text) - 1
+        x2 = int(BndBox.find('xmax').text) - 1
+        y2 = int(BndBox.find('ymax').text) - 1
         BndBoxLoc = [x1, y1, x2, y2]
         if ObjName in ObjBndBoxSet:
             # if ObjBndBoxSet.has_key(ObjName):
@@ -56,7 +56,7 @@ def DrawObjectBox(Im, ObjBndBoxSet, BoxColor):
             cv2.rectangle(Im, (BndBox[0], BndBox[1]), (BndBox[2], BndBox[3]), BoxColor, 2)
             dsptxt = '{:s}'.format(ObjName)
             cv2.putText(Im, dsptxt, (max([(BndBox[0] + BndBox[2]) // 2 - 10, 0]), max([BndBox[3] - 3, 0])),
-                        cv2.FONT_HERSHEY_DUPLEX, 4, (255, 255, 255), 4)
+                        cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 255), 1)
 
 
 if __name__ == "__main__":
@@ -75,7 +75,7 @@ if __name__ == "__main__":
         print(str(ObjBndBoxSet))
         DrawObjectBox(Im, ObjBndBoxSet, (0, 255, 0))
         # cv2.imshow('Img_Res', Im)
-        savePath = os.path.join(r"C:\Users\Administrator\Desktop\al_defect_GT/",filename)
+        savePath = os.path.join("/home/dlj/CornerNet/visual_img/",filename)
         cv2.imwrite(savePath, Im)
 
         # cv2.waitKey(0)
