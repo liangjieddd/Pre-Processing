@@ -60,3 +60,18 @@ tensorflow版本的保存模型的脚本
 
 20.split_data.py
 将数据划分为train、val、test（自定义比例）
+
+21.voc_label.py
+生成VOC格式的标签
+
+22.write_all.py
+将图片路径写入同一个txt文件中
+
+23.write_img_to_lst.py
+将图片的xml写入lst格式的文件
+
+24.write_rect.py在原图上画Ground Truth，ps：此文件有问题，请用overlap.py
+
+25.
+
+26.
