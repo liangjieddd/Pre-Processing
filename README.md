@@ -34,12 +34,29 @@ detectron2的demo文件运行脚本
 11.img_resize.py
 将原图resize到指定尺寸
 
-12.
+12.img_resize_same_scale.py
+将原图进行等比例放大或者缩小
 
-13.
+13.img_resize_scale.py
+将原图进行自定义比例放大或者缩小
 
-14.
+14.overlap.py
+将标注文件里的GT标注到原图上
 
-15.
+15.pos_xml.py
+为负样本（即无缺陷样本）图片生成标注框
 
-16.
+16.proposal.py
+在图片中提取负样本图片
+
+17.resavemodel.py
+tensorflow生成的模型进行重新保存
+
+18.revisexml.py
+修改xml文件中指定标签内的数据
+
+19.save_model.py
+tensorflow版本的保存模型的脚本
+
+20.split_data.py
+将数据划分为train、val、test（自定义比例）
